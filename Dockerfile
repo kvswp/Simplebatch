@@ -1,10 +1,11 @@
 # Set the base image to the latest Windows Server Core
 FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
-# Install Chocolatey package manager
-RUN powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; `
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; `
-    iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
+# Set up Chocolatey package manager
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; `
+    Invoke-WebRequest -Uri https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
 
 # Install Visual Studio Build Tools and the Windows SDK
 RUN choco install visualstudio2019buildtools -y --package-parameters "--add Microsoft.VisualStudio.Component.VC.ATLMFC --add Microsoft.VisualStudio.Component.Windows10SDK.19041" ; `
