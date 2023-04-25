@@ -2,8 +2,8 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
 # Install Chocolatey package manager
-RUN powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; `
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+RUN powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; `
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; `
     iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
 
 # Install Visual Studio Build Tools and the Windows SDK
