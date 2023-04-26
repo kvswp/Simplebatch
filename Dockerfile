@@ -5,4 +5,4 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2022
 WORKDIR "C:\app"
 
 # Set the command to be run when the container starts
-CMD ["powershell.exe"]
+ENTRYPOINT ["powershell.exe"]
