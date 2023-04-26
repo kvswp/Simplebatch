@@ -10,6 +10,8 @@ RUN .\vs_buildtools.exe --quiet --wait --norestart --nocache --installPath C:\Bu
 
 RUN .\winsdksetup.exe /q /norestart
 
+RUN setx PATH "%PATH%;C:\BuildTools\MSBuild\Current\Bin"
+
 CMD ["powershell"]
 
 
