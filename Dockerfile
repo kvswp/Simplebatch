@@ -8,11 +8,11 @@ RUN curl -sl https://download.microsoft.com/download/4/2/2/422a5372-586f-4c2e-8d
 
 RUN dir
 
-RUN .\vs_buildtools.exe --quiet --wait --norestart --nocache --installPath C:\BuildTools
+#RUN .\vs_buildtools.exe --quiet --wait --norestart --nocache --installPath C:\BuildTools
 
-RUN .\winsdksetup.exe /q /norestart
+#RUN .\winsdksetup.exe /q /norestart
 
-RUN setx PATH "%PATH%;C:\BuildTools\MSBuild\Current\Bin"
+#RUN setx PATH "%PATH%;C:\BuildTools\MSBuild\Current\Bin"
 
 CMD ["powershell"]
 
